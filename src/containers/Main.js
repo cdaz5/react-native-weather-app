@@ -59,7 +59,7 @@ class Main extends Component {
 		const { temp, weatherType } = this.props;
 
 		return (
-  <View style={[styles.container, { backgroundColor: phrases[weatherType].background }]}>
+  <View style={parseInt(temp) > 65 ? [styles.container, { backgroundColor: phrases[weatherType].background }] : [styles.container, { backgroundColor: phrases[weatherType].coldBackground }]}>
     <StatusBar hidden />
     <View key={1} style={styles.header}>
       {weatherType === 'initialLoad'
@@ -70,13 +70,30 @@ class Main extends Component {
 							]}
     </View>
     <View key={2} style={styles.body}>
-      <Highlighter
-        style={styles.bodyTitle}
-        highlightStyle={{ color: phrases[weatherType].color }}
-        searchWords={[phrases[weatherType].highlight]}
-        textToHighlight={phrases[weatherType].title}
-      />
-      <Text style={styles.bodySub}>{phrases[weatherType].subTitle}</Text>
+      {
+        parseInt(temp) > 65 ?
+        [
+          <Highlighter
+            key={1}
+            style={styles.bodyTitle}
+            highlightStyle={{ color: phrases[weatherType].color }}
+            searchWords={[phrases[weatherType].highlight]}
+            textToHighlight={phrases[weatherType].title}
+          />,
+          <Text key={2} style={styles.bodySub}>{phrases[weatherType].subTitle}</Text>
+        ]
+        :
+        [
+          <Highlighter
+            key={1}
+            style={styles.bodyTitle}
+            highlightStyle={{ color: phrases[weatherType].coldColor }}
+            searchWords={[phrases[weatherType].coldHighlight]}
+            textToHighlight={phrases[weatherType].coldTitle}
+          />,
+          <Text key={2} style={styles.bodySub}>{phrases[weatherType].coldSubTitle}</Text>
+        ]
+      }
     </View>
   </View>
 		);
