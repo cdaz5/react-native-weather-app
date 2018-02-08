@@ -4,7 +4,7 @@
 		"sdkVersion": "25.0.0",
 		"icon": "./spiral-sun.png",
 		"description": "Weather App",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"orientation": "portrait",
 		"ios": {
 			"bundleIdentifier": "com.chrisdascoli.getweather"
